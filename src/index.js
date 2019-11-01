@@ -2,7 +2,7 @@ const express = require('express');
 const React = require('react');
 const app = express();
 
-const Home = require('./client/Home');
+const Home = require('./client/Home').default;
 const renderToString = require('react-dom/server').renderToString;
 
 

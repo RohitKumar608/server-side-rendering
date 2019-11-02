@@ -1,18 +1,17 @@
-const express = require('express');
-const React = require('react');
+import express from "express";
+import renderer from './helper/renderer';
+import createStore from './helper/createStore';
+
 const app = express();
-
-const Home = require('./client/Home').default;
-const renderToString = require('react-dom/server').renderToString;
-
+app.use('/public', express.static('public'))
+    // app.use(express.static('public'));
 
 const port = process.env.port || 3000;
-console.log(port, process.env.port);
-app.get('/', (req, res) => {
-    const content = renderToString( < Home / > );
-    res.send(content);
+app.get("*", (req, res) => {
+    const store = createStore();
+    res.send(renderer(req, store));
 });
 
 app.listen(3000, () => {
-    console.log('Listening on prot 3000');
+    console.log("Listening on prot 3000");
 });

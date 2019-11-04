@@ -7,9 +7,9 @@ import thunk from "redux-thunk";
 import { renderRoutes } from "react-router-config";
 
 import reducers from "../store/reducers";
-import Routes from "./components/Routes";
+import Routes from "./Routes";
 
-const store = createStore(reducers, {},applyMiddleware(thunk));
+const store = createStore(reducers, window.initialState,applyMiddleware(thunk));
 
 ReactDOM.render(
   <Provider store={store}>

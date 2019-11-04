@@ -4,7 +4,7 @@ import { StaticRouter } from "react-router-dom";
 import { Provider } from "react-redux";
 import { renderRoutes } from "react-router-config";
 
-import Routes from "../client/components/Routes";
+import Routes from "../client/Routes";
 
 const renderer = (req, store) => {
   const content = renderToString(
@@ -16,8 +16,8 @@ const renderer = (req, store) => {
   );
 
   return `<html> <head></head><body> <div id="root">     ${content}     </div>
+        <script>window.initialState=${JSON.stringify(store.getState())}</script>
         <script src="public/bundle.js"></script>
-        
         </body></html>`;
 };
 

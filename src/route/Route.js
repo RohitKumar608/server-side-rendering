@@ -7,13 +7,13 @@ import PageNotFound from '../components/page-not-found'
 const Routes = [{
     ...App,
     routes: [{
-            ...City,
+            ...Home,
             path: '/',
             exact: true
         },
         {
-            ...Home,
-            path: "/users",
+            ...City,
+            path: "/city",
             exact: true,
         },
         {

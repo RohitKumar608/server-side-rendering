@@ -15,7 +15,7 @@ const renderer = (req, store, context) => {
     </Provider>
   );
 
-  return `<html> <head></head><body> <div id="root">     ${content}     </div>
+  return `<html> <head></head><body><link rel="stylesheet" type="text/css" href="public/main.css"> <div id="root">     ${content}     </div>
         <script>window.initialState=${serialize(store.getState())}</script>
         <script src="public/bundle.js"></script>
         </body></html>`;

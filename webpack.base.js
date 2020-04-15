@@ -1,4 +1,5 @@
 const webpack = require('webpack');
+const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 
 module.exports = {
     module: {
@@ -11,9 +12,17 @@ module.exports = {
                     presets: ['@babel/preset-env', '@babel/preset-react', { 'plugins': ['@babel/plugin-proposal-class-properties'] }]
                 }
             }
-        }]
+        },
+        {
+            test: /\.css$/i,
+            use: [MiniCssExtractPlugin.loader,'css-loader'],
+        }
+        ]
     },
     plugins: [
+        new MiniCssExtractPlugin({
+            filename: "main.css",
+        }),
         new webpack.DefinePlugin({
             PRODUCTION: JSON.stringify(false),
             VERSION: JSON.stringify('5fa3b9'),
@@ -25,5 +34,8 @@ module.exports = {
                 BASE_URL: JSON.stringify('https://jsonplaceholder.typicode.com')
             },
         })
-    ]
+    ],
+    resolve: {
+        extensions: [".js", ".jsx", ".css"],
+    },
 }

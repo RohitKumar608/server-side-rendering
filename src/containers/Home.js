@@ -9,7 +9,7 @@ class Home extends Component{
     
     listRenderer = (user) => {
         const {email, name, id, username}= user
-        return (<div key={id}>
+        return (<div key={id} style={{padding: '5px',backgroundColor: 'gray', width: '50%', marginTop: '10px', marginLeft: '25%'}}>
             <p>
                 <span>Name: {name}</span>
                 <span>Email : {email}</span>
@@ -20,8 +20,7 @@ class Home extends Component{
     render(){
         const { userList } = this.props
         return(
-            <div onClick={()=>console.log('Hi there')} style={{backgroundColor:'blue',color:'white'}}>
-                <Link  to="/users">City</Link >
+            <div onClick={()=>console.log('Hi there')} >
                { userList && userList.map((user)=>this.listRenderer(user)) }
             </div>
         )

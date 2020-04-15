@@ -4,7 +4,6 @@ class City extends Component{
     render(){
         return(
             <div>
-                <Link to="/">Users</Link>
                 City Page
             </div>
         )

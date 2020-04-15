@@ -4,6 +4,7 @@ import { connect } from 'react-redux';
 import { renderRoutes } from "react-router-config";
 import { Link } from 'react-router-dom'
 import { LOGOUT, LOGIN } from './store/actions/actions';
+import './App.css';
 
 class App extends Component{
   handleLogin = () => {
@@ -22,20 +23,23 @@ class App extends Component{
       showLoginLogoutBtn = <button onClick={ this.handleLogin } >Login</button>
     }
     return(
-      <div>
+      <div className="App">
         <h3>Header Page</h3>
         <ul>
           <li>
-            <Link to="/">City</Link>
+            <Link to="/">User</Link>
           </li>
           <li>
-            <Link to="/users">User</Link>
+            <Link to="/city">City</Link>
           </li>
           <li>
             <Link to="/admin">Admin</Link>
           </li>
+          <li>
+            
+          </li>
         </ul>
-        <div>
+        <div style={{padding: '10px'}}>
           {showLoginLogoutBtn}
         </div>
         {renderRoutes(route.routes)}

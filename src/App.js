@@ -24,7 +24,6 @@ class App extends Component{
     }
     return(
       <div className="App">
-        <h3>Header Page</h3>
         <ul>
           <li>
             <Link to="/">User</Link>

@@ -9,11 +9,10 @@ class Home extends Component{
     
     listRenderer = (user) => {
         const {email, name, id, username}= user
-        return (<div key={id} style={{padding: '5px',backgroundColor: 'gray', width: '50%', marginTop: '10px', marginLeft: '25%'}}>
+        return (<div key={id} style={{fontSize:'18px', padding: '5px',backgroundColor: 'gray', width: '50%', marginTop: '10px', marginLeft: '25%'}}>
             <p>
-                <span>Name: {name}</span>
+                <span>Name: {name}</span><br />
                 <span>Email : {email}</span>
-                <span>UserName : {username}</span>
             </p>
         </div>)
     }

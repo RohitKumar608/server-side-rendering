@@ -5,7 +5,8 @@ const merge = require('webpack-merge');
 process.env.NODE_ENV = 'development';
 
 const config = {
-    entry: "./src/client/client.js",
+    mode: 'development',
+    entry: "./src/index.js",
     output: {
         filename: "bundle.js",
         path: path.resolve(__dirname, "public"),

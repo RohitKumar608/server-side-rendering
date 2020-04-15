@@ -8,7 +8,7 @@ process.env.NODE_ENV = 'development';
 const config = {
     mode: 'development',
     target: "node",
-    entry: "./src/index.js",
+    entry: "./src/server.js",
     output: {
         filename: "bundle.js",
         path: path.resolve(__dirname, "build"),

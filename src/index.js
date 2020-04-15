@@ -1,31 +1,32 @@
-import express from "express";
-import renderer from './helper/renderer';
-import createStore from './helper/createStore';
-import { matchRoutes } from "react-router-config";
-import proxy from 'express-http-proxy';
-import Routes from './client/Routes';
+import React from "react";
+import ReactDOM from "react-dom";
+import { BrowserRouter } from "react-router-dom";
+import { createStore, applyMiddleware } from "redux";
+import {Provider} from "react-redux";
+import thunk from "redux-thunk";
+import { renderRoutes } from "react-router-config";
+import axios from 'axios';
 
-const app = express();
-app.use('/api', proxy('https://react-ssr-api.herokuapp.com/users', {
-    proxyReqOptDecorator(opts) {
-        opts.headers['x-forwarded-host'] = 'localhost:3000';
-        return opts;
-    }
-}));
-app.use('/public', express.static('public'));
+import reducers from "./store/reducers";
+import Routes from "./route/Route";
 
-
-const port = process.env.port || 3000;
-app.get("*", (req, res) => {
-    const store = createStore(req);
-    const promises = matchRoutes(Routes, req.path).map(({ route }) => {
-        return route.loadData ? route.loadData(store) : null;
-    })
-    Promise.all(promises).then(() => {
-        res.send(renderer(req, store));
-    })
+const axiosInstance = axios.create({
+  baseURL:'/api'
 });
+// const composeEnhancers =
+//   process.env.NODE_ENV === "development"
+//     ? window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__
+//     : null || compose;
 
-app.listen(port, () => {
-    console.log("Listening on prot 3000");
-});
+console.log(window.initialState)
+
+const store = createStore(reducers, window.initialState,applyMiddleware(thunk.withExtraArgument(axiosInstance)));
+
+ReactDOM.render(
+  <Provider store={store}>
+    <BrowserRouter>
+    <div>{renderRoutes(Routes)}</div>
+    </BrowserRouter>{" "}
+  </Provider>,
+  document.getElementById("root")
+);

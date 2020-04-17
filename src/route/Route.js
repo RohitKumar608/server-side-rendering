@@ -13,7 +13,7 @@ const Routes = [{
         },
         {
             ...City,
-            path: "/city",
+            path: "/tourist-place",
             exact: true,
         },
         {

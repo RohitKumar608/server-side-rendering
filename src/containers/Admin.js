@@ -12,6 +12,7 @@ class Admin extends Component {
   }
   render() {
     const { isUserLogin, albums } = this.props;
+    const resizeAlbumData = albums.slice(0,100)
     let adminData = "";
     if (isUserLogin) {
       adminData = (
@@ -19,7 +20,7 @@ class Admin extends Component {
           className="card-columns"
           style={{ display: "flex", padding: "40px", flexWrap: "wrap" }}
         >
-          {albums.map(album => (
+          {resizeAlbumData.map(album => (
             <Card key={album.id} {...album} />
           ))}
         </div>
